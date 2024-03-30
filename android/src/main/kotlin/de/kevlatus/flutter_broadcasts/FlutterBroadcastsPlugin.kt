@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.util.Log
 import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -46,7 +47,10 @@ class CustomBroadcastReceiver(
     }
 
     fun start(context: Context) {
-        context.registerReceiver(this, intentFilter, Context.RECEIVER_NOT_EXPORTED)
+        if (Build.VERSION.SDK_INT > 33)
+            context.registerReceiver(this, intentFilter, Context.RECEIVER_NOT_EXPORTED)
+        else
+            context.registerReceiver(this, intentFilter)
         Log.d(TAG, "starting to listen for broadcasts: " + names.joinToString(";"))
     }
 
