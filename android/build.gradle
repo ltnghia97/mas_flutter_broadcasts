@@ -1,3 +1,5 @@
+package android
+
 group 'de.kevlatus.flutter_broadcasts'
 version '1.0-SNAPSHOT'
 
